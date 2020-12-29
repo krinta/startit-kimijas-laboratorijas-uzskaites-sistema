@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, json, request
 import dati
 
 
@@ -40,8 +40,10 @@ def lietotajs():
 
 @app.route('/api/v1/vielas')
 def vielas():
+  with open("dati/vielas.json","r",encoding="utf-8")as f:
+    dati=json.loads(f.read())
     # pārveidojam par json pirms atgriežam
-    return jsonify(dati.vielas)
+    return jsonify(dati)
 
 
 @app.route('/api/v1/viela/<vielasID>')
@@ -54,6 +56,50 @@ def viela_id(vielasID):
         if v["id"] == int(vielasID):
             viela = v
     return jsonify(viela)
+
+@app.route('/api/v1/viela', methods = ['POST'])
+def pievienot_vielu():
+  datne = "dati/vielas.json"
+
+  with open(datne, "r", encoding = "utf-8") as f:
+    vielas = json.loads(f.read())
+
+  last_id = vielas[len(vielas) - 1]['id']
+  
+  jauna_viela = json.loads(request.data)
+  jauna_viela['id'] = last_id + 1
+
+  vielas.append(jauna_viela)
+
+  with open(datne, "w", encoding = "utf-8") as f:
+    f.write(json.dumps(vielas))
+  
+  return "1"
+
+
+  #print("=======================")
+  #print(len(vielas))
+  #print(vielas[len(vielas)-1])
+  #print("======================")
+  
+
+@app.route('/api/v1/<kategorija>/<id>/dzest', methods=['POST'])
+def dzestVielu(kategorija,id):
+  if kategorija=="viela":
+    datne="dati/vielas.json"
+  elif kategorija=="inventars":
+    datne="dati/inventars.json"
+  else:
+    return "Datne nav atrasta!"
+  with open(datne, "r",encoding="utf-8") as f:
+    dati=json.loads(f.read())
+  new_data=[]
+  for v in dati:
+    if str(v['id'])!=id:
+      new_data.append(v)
+  
+  with open(datne,"w", encoding="utf-8") as f:
+    f.write(json.dumps(new_data))
 
 
 if __name__ == "__main__":
