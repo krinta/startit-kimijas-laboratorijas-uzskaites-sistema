@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script>
+
+async function raditDatusNoAPI()
+{
+
+  let vielasNoServera = await fetch('https://pytonc.eu.pythonanywhere.com/api/v1/vielas'); //inventars
+  let datiNoliktava = await vielasNoServera.json();
+
+  //console.log(datiNoliktava);
+
+  let tabula = document.querySelector('.tabula');
+
+  
+  for (i = 0; i < datiNoliktava.length; i++)
+  {
+      tabula.innerHTML = tabula.innerHTML+`
+      <tr>
+      <td> `+datiNoliktava[i]['nosaukums']+` </td>
+      <td> <a onclick="dzestDatusAPI(`+datiNoliktava[i]['id']+`)"> ❌ </a> </td>
+      </tr>`;
+  }
+
+}
+
+raditDatusNoAPI();
+
+
+
+
+async function dzestDatusAPI(id)
+{
+
+  if (confirm('Dzēst?')) 
+  {
+    let request = await fetch('https://pytonc.eu.pythonanywhere.com/api/v1/viela/'+id+'/dzest',
+                {
+                method:"POST",
+                headers: {
+                'X-API-KEY': 'asdf',
+                'Content-Type': 'application/json'
+                }
+            });
+    
+      let atbilde = await request.json();
+
+      alert('Atbilde no servera: '+atbilde);
+
+      
+	}
+
+}
+
+
+</script>
+
+
+
+</head>
+<body>
+  <table class="tabula">
+  </table>
+</body>
+</html>

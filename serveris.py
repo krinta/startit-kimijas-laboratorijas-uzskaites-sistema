@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 import dati
 
 
@@ -10,8 +10,19 @@ app.config['JSON_AS_ASCII'] = False
 
 @app.route('/')
 def index():
-    return "Labrīt!"
+    return render_template("index.html")
 
+@app.route('/publiski')
+def pubData():
+    return render_template("pub_data.html")
+
+@app.route('/pieslegties')
+def pieslegties():
+    return render_template("login.html")
+
+@app.route('/user_menu')
+def user_menu():
+    return render_template("user_menu.html")
 
 @app.route('/api/v1/vielas')
 def vielas():

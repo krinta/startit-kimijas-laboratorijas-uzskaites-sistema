@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script>
+
+async function pievienotDatusAPI()
+{
+
+let requestBodyJson = {
+              "apakstips": document.querySelector('#apakstips').value,
+              "daudzums": parseInt(document.querySelector('#daudzums').value),
+              "komentari": document.querySelector('#komentari').value,
+              "mervienibas": document.querySelector('#mervienibas').value,
+              "nosaukums": document.querySelector('#nosaukums').value,
+              "skaits": parseInt(document.querySelector('#skaits').value),
+              "tips": document.querySelector('#tips').value
+              };
+let requestBodyString = JSON.stringify(requestBodyJson);
+
+
+let request = await fetch('https://pytonc.eu.pythonanywhere.com/api/v1/viela',
+         		{
+            method:"POST",
+  					headers:
+  					{
+            'X-API-KEY': 'asdf',
+            'Content-Type': 'application/json'
+            },
+            body:requestBodyString
+        		});
+
+let atbilde = await request.json();
+console.log(atbilde);
+
+
+}
+
+//pievienotDatusAPI();
+
+
+</script>
+
+
+
+</head>
+<body>
+
+        <pre>
+
+        <form>
+        
+        Nosaukums <input id="nosaukums" />
+        
+        Tips <select id="tips">
+            <option value="reaģents">reaģents</option>
+            <option value="svari">svari</option>
+            <option value="sildītājs">sildītājs</option>
+            <option value="trauks">trauks</option>
+            <option value="cits">cits</option>
+            </select>
+        
+        Apakštips <select id="apakstips">
+            <option value="sāls">sāls</option>
+            <option value="hidroksīds">hidroksīds</option>
+            <option value="skābe">skābe</option>
+            <option value="mehāniskie svari">mehāniskie svari</option>
+            <option value="elektroniskie svari">elektroniskie svari</option>
+            <option value="plītiņa">plītiņa</option>
+            <option value="trauki">trauki</option>
+            <option value="stikls">stikls</option>
+            <option value="cits">cits</option>
+            </select>
+        
+        Mērvienibas <input id="mervienibas" />
+
+        Svars/daudzums <input type="number" id="daudzums" />
+
+        Skaits <input type="number" id="skaits" />
+        
+        Komentāri <textarea id="komentari"></textarea>
+
+        <a onclick="pievienotDatusAPI()">✅ Saglabāt</a>
+        </form>
+
+        
+        <hr />
+        Atbilde no servera: <span id="atbilde"></span>
+
+
+        </pre>
+
+
+
+</body>
+</html>

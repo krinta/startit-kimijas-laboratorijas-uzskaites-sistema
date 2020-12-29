@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script>
+
+async function raditDatusNoAPI()
+{
+
+  let vielasNoServera = await fetch('https://pytonc.eu.pythonanywhere.com/api/v1/viela/3', //2
+                {
+                method:"GET",
+                headers: 
+                {
+                'X-API-KEY': 'asdf',
+                'accept': 'application/json'
+                }
+                });
+  let datiNoliktava = await vielasNoServera.json();
+
+  console.log(datiNoliktava);
+
+  /*
+  let tabula = document.querySelector('.tabula');
+  
+  tabula.innerHTML = `
+  <tr><td>`+datiNoliktava['nosaukums']+`</td></tr>
+  <tr><td>`+datiNoliktava['tips']+`</td></tr>`;
+  */
+  
+}
+
+raditDatusNoAPI();
+
+
+</script>
+
+
+
+</head>
+<body>
+  <table class="tabula">
+  </table>
+</body>
+</html>

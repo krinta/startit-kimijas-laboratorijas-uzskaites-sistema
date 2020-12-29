@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script>
+
+async function dzestDatusAPI()
+{
+
+  if (confirm('Dzēst?')) 
+  {
+    let request = await fetch('https://pytonc.eu.pythonanywhere.com/api/v1/viela/16/dzest',
+                {
+                method:"POST",
+                headers: {
+                'X-API-KEY': 'asdf',
+                'Content-Type': 'application/json'
+                }
+            });
+    
+      let atbilde = await request.json();
+
+      console.log('Atbilde no servera: '+atbilde);
+
+      let tabula = document.querySelector('.tabula');
+      tabula.innerHTML=JSON.stringify(atbilde);
+	}
+
+}
+
+dzestDatusAPI();
+
+
+</script>
+
+
+
+</head>
+<body>
+  <table class="tabula">
+  </table>
+</body>
+</html>

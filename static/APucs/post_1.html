@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script>
+
+async function pievienotDatusAPI()
+{
+
+let requestBodyJson = {
+              "apakstips": "skābe ",
+              "daudzums": 50,
+              "id": 0,
+              "komentari": "Augšējā plauktā pa kreisi",
+              "mervienibas": "ml",
+              "nosaukums": "Vielas nosaukums 5",
+              "skaits": 45,
+              "tips": "reaģents"
+              };
+let requestBodyString = JSON.stringify(requestBodyJson);
+
+
+let request = await fetch('https://pytonc.eu.pythonanywhere.com/api/v1/viela',
+         		{
+              method:"POST",
+              headers:
+              {
+              'X-API-KEY': 'asdf',
+              'Content-Type': 'application/json'
+              },
+              body:requestBodyString
+        		});
+
+let atbilde = await request.json();
+console.log(atbilde);
+
+
+//let tabula = document.querySelector('.tabula');
+
+//tabula.innerHTML=JSON.stringify(atbilde);
+
+}
+
+pievienotDatusAPI();
+
+
+</script>
+
+
+
+</head>
+<body>
+  <table class="tabula">
+  </table>
+</body>
+</html>

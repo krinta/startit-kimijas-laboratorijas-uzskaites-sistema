@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/buttons.css">
+    <link rel="stylesheet" href="css/table.css">
+    <link rel="stylesheet" href="css/header.css">
+
+    <title>Start(IT)</title>
+  </head>
+  <body>
+    <header>
+      <div class="content_wrapper">
+        <a href="pub_data.html" class="logo">
+          <img src="images/front_page_icon.svg">
+          <span>ĶLUS</span>
+        </a>
+        <nav>
+          <a href="vielu_aprikojuma_uzskaite.html" class="active">Uzskaite</a>
+          <a href="iepirkumi.html">Iepirkumi</a>
+          <a href="rikojumi.html">Rīkojumi</a>
+          <a href="lietotaji.html">Lietotāji</a>
+          <a href="index.html">Iziet</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="content_wrapper">
+
+        <div class="flex3">
+            <div class="table_filter">
+                <span class="table_filter_label">Rādīt:</span>
+                <a class="button" onclick="raditNoliktavasDatus(this.dataset.filter)">Visu</a>
+                <a class="button" data-filter="viela" onclick="raditNoliktavasDatus(this.dataset.filter)">Vielas</a>
+                <a class="button" data-filter="aprikojums"  onclick="raditNoliktavasDatus(this.dataset.filter)">Aprīkojumu</a>
+            </div>
+            <div class="alignRight">
+                <a class="button" href="pievienot_vielu_aprikojumu.html">Pievienot ierakstu</a>
+            </div>
+        </div>
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+        <table id="pub_data">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nosaukums</th>
+              <th>Tips</th>
+              <th>Apakštips</th>
+              <th>Skaits</th>
+              <th>Svars/daudzums</th>
+              <th>Komentāri</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="">
+              <td></td>
+              <td>Ieraksti ielādējas...</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          <tbody>
+        </table>
+      </div>
+    </div><!--beidzas class=content-->
+
+    <script src='js/main.js'></script>
+    <script>
+      raditNoliktavasDatus();
+    </script>
+  </body>
+</html>

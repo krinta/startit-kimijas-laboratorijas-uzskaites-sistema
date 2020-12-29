@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script>
+
+async function raditDatusNoAPI()
+{
+
+  let vielasNoServera = await fetch('https://pytonc.eu.pythonanywhere.com/api/v1/viela/1'); //,options);
+  let datiNoliktava = await vielasNoServera.json();
+
+  console.log(datiNoliktava);
+
+}
+
+raditDatusNoAPI();
+
+
+</script>
+
+
+
+</head>
+<body>
+  <table class="tabula">
+  </table>
+</body>
+</html>
